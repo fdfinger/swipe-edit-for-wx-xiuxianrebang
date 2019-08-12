@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>热点</title>
+  <style>
+    * {
+      margin: auto;
+      padding: auto;
+    }
+
+    #weibo li a {
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    function getWeiboData() {
+      fetch('./weibo.json')
+        .then(function (res) {
+          return res.json()
+        })
+        .then(function (json) {
+          const weiboEle = document.querySelector('#weibo')
+          weiboEle.innerHTML = json.map(function (item) {
+            return '<li>' + '<p><a href="https://s.weibo.com' + item.url +
+              '" target="_blank" noreffer style="color: rgb(0, 176, 240);font-size: 14px;font-family: 微软雅黑, "Microsoft YaHei"">' +
+              item.content + '</a></p>' + '</li>'
+          }).join('')
+        })
+    }
+    window.onload = function () {
+      getWeiboData();
+    }
+  </script>
+</head>
+
+<body>
+  <div id="weibo-con">
+    <ol id="weibo"></ol>
+  </div>
+</body>
+
+</html>
