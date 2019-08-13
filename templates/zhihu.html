@@ -31,9 +31,9 @@
           </section>
       </section>
   </section>
-    <ul style="list-style-type:none;">
+    <div>
       {% for item in data %}
-        <li>
+        <div>
           <p style="font-size:1.2em;font-weight:bold;color:blue;">
             <a style="text-decoration:none;"
                href="{{item.get('url')}}"
@@ -44,9 +44,9 @@
             {{item.get('content')}}
           </p>
           <!-- <p style="font-size:13px;">{{item.get('create_date')}}</p> -->
-        </li>
+        </div>
       {% endfor %}
-    </ul>
+    </div>
   </div>
 
 </body>

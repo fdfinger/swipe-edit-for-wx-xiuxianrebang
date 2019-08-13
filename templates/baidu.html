@@ -30,10 +30,10 @@
               <section data-bdless="spin" data-bdlessp="280" style="height: 0px;width: 0px;border-top:0px solid transparent;border-right:25px solid #5ca09b;border-bottom:8px solid transparent;"></section>
           </section>
       </section>
-  </section>
-    <ul style="list-style-type:none;">
+    </section>
+    <div style="list-style-type:none;">
       {% for item in data %}
-        <li>
+        <div>
           <p style="font-size:1.2em;font-weight:bold;color:blue;">
             <a style="text-decoration:none;"
                href="{{item.get('url')}}"
@@ -44,9 +44,9 @@
             {{item.get('content')}}
           </p>
           <!-- <p style="font-size:13px;">{{item.get('create_date')}}</p> -->
-        </li>
+        </div>
       {% endfor %}
-    </ul>
+    </div>
   </div>
 
 </body>
