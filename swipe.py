@@ -125,4 +125,4 @@ def main():
     weixin()
 
 if __name__ == '__main__':
-    weixin()
+    main()

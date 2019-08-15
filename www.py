@@ -11,7 +11,7 @@ CORS(app)
 
 @app.route('/')
 def index():
-    return render_template('template.html', data=BaseModel().select())
+    return render_template('template.html', data=BaseModel().select()[:10])
 
 @app.route('/update')
 def update():
@@ -20,15 +20,15 @@ def update():
 
 @app.route('/baidu')
 def baidu():
-    return render_template('baidu.html', data=BaiduModal().select())
+    return render_template('baidu.html', data=BaiduModal().select()[:10])
 
 @app.route('/zhihu')
 def zhihu():
-    return render_template('zhihu.html', data=ZhihuModal().select())
+    return render_template('zhihu.html', data=ZhihuModal().select()[:10])
 
 @app.route('/weixin')
 def weixin():
-    return render_template('weixin.html', data=WeixinModal().select())
+    return render_template('weixin.html', data=WeixinModal().select()[:10])
 
 
 if __name__ == '__main__':
