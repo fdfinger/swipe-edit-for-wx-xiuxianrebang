@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <title>微信热点</title>
 </head>
 <body>
@@ -31,6 +32,7 @@
           </section>
       </section>
     </section>
+    <p></p>
     <div style="list-style-type:none;">
       {% for item in data %}
         <div>
@@ -40,11 +42,10 @@
                target="_blank"
              >{{item.get('title')}}</a>
           </p>
-          <p style="font-size:16px;">
+          <p style="font-size:16px;text-indent: 2em;">
             {{item.get('content')}}
           </p>
           <!-- <p style="font-size:13px;">{{item.get('create_date')}}</p> -->
-          <p></p>
         </div>
       {% endfor %}
     </div>
