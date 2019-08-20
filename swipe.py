@@ -48,7 +48,7 @@ def baidu():
     html = get(baidu_url)
     if not html:
       return
-    soup = BeautifulSoup(html.encode("iso-8859-1").decode('gbk').encode('utf8'))
+    soup = BeautifulSoup(html.encode("iso-8859-1").decode('gbk').encode('utf8'), "html.parser")
     fliter_baidu = soup.find_all('a', attrs={"class":"list-title"})
     for new in fliter_baidu[:10]:
       baidu_db.insert((new.text, '', new.get('href'), ''))
@@ -125,9 +125,9 @@ def weixin():
 
 def main():
     weibo()
-    # baidu()
-    # zhihu()
-    # weixin()
+    baidu()
+    zhihu()
+    weixin()
 
 if __name__ == '__main__':
-    main()
+    baidu()
