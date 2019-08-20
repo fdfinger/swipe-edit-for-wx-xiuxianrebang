@@ -19,6 +19,7 @@ class BaseModel:
        (ID INTEGER PRIMARY KEY AUTOINCREMENT,
        TITLE    TEXT    NOT NULL,
        CONTENT  TEXT     NOT NULL,
+       IMG  TEXT     NOT NULL,
        URL      CHAR(200),
        CREATEDATE TIMESTAMP default (datetime('now', 'localtime')));'''.format(self.tablename))
 
@@ -28,7 +29,7 @@ class BaseModel:
             if len(_exists) > 0:
               return
             else:
-              db.execute("INSERT INTO {0} (TITLE,CONTENT,URL) \
+              db.execute("INSERT INTO {0} (TITLE,CONTENT,URL,IMG) \
       VALUES {1}".format(self.tablename, data))
 
     def select(self):
@@ -40,14 +41,19 @@ class BaseModel:
             'id': row[0],
             'title': row[1],
             'content': row[2],
-            'url': row[3],
-            'create_date': row[4]
+            'img': row[3],
+            'url': row[4],
+            'create_date': row[5]
           })
         return _r
 
     def update(self, id, data):
         with get_db() as db:
             db.execute("UPDATE {0} SET CONTENT = '{2}' WHERE ID={1}".format(self.tablename, id, data))
+
+    def set_img(self, id, data):
+        with get_db() as db:
+            db.execute("UPDATE {0} SET IMG = '{2}' WHERE ID={1}".format(self.tablename, id, data))
 
     def delete(self):
         with get_db() as db:

@@ -4,7 +4,7 @@
 ## 安装
 
 ``` shell
-pip install -i https://pypi.douban.com/simple flask flask_cors requests BeautifulSoup4 
+pip install -i https://pypi.douban.com/simple flask flask_cors requests BeautifulSoup4 lxml
 ```
 
 ## 运行

@@ -21,11 +21,11 @@ def weibo():
     html = get(weibo)
     if not html:
       return
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html, "lxml")
     new_list = [x for x in soup.find_all('a') if '/weibo?q=' in x.get('href')]
     for new in new_list[:10]:
       #newdata = "{0},{1},{2}".format()
-      db.insert((new.text, '', new.get('href')))
+      db.insert((new.text, '', new.get('href'), ''))
       weibo_detail(new.text, new.get('href'))
 
 def weibo_detail(title, url):
@@ -34,11 +34,12 @@ def weibo_detail(title, url):
     html = get(weibo_detail_url)
     if not html:
       return
-    weibo_detail_soup = BeautifulSoup(html)
+    weibo_detail_soup = BeautifulSoup(html, "lxml")
     content = weibo_detail_soup.find_all('div', attrs={"class":"content"})
     try:
         ids = db.get_id(title)
-        db.update(ids[0].get('id'), content[0].find_all('p', attrs={"class":"txt"})[0].text)
+        db.update(ids[0].get('id'), content[0].find_all('p', attrs={"class":"txt"})[0].text.strip())
+        db.set_img(ids[0].get('id'), weibo_detail_soup.find_all('ul', attrs={"class":"m3"})[0].find_all('img'))
     except:
       pass
 
@@ -50,7 +51,7 @@ def baidu():
     soup = BeautifulSoup(html.encode("iso-8859-1").decode('gbk').encode('utf8'))
     fliter_baidu = soup.find_all('a', attrs={"class":"list-title"})
     for new in fliter_baidu[:10]:
-      baidu_db.insert((new.text, '', new.get('href')))
+      baidu_db.insert((new.text, '', new.get('href'), ''))
       baidu_detail(new.text, new.get('href'))
     del baidu_url
     del html
@@ -63,11 +64,11 @@ def baidu_detail(title, url):
     html = get(baidu_detail_url)
     if not html:
       return
-    baidu_detail_soup = BeautifulSoup(html)
+    baidu_detail_soup = BeautifulSoup(html, "lxml")
     filter_baidu_detail = baidu_detail_soup.find_all("div",attrs={"class":"c-row"})
     try:
         ids = baidu_db.get_id(title)
-        baidu_db.update(ids[0].get('id'), filter_baidu_detail[0].text)
+        baidu_db.update(ids[0].get('id'), filter_baidu_detail[0].text.strip())
     except:
       pass
 
@@ -77,10 +78,10 @@ def zhihu():
     html = get(zhihu_url)
     if not html:
       return
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html, "lxml")
     fliter_zhihu = soup.find_all('td', attrs={"class":"al"})
     for new in fliter_zhihu[:10]:
-      zhihu_db.insert((new.a.text, '', new.a.get('href')))
+      zhihu_db.insert((new.a.text, '', new.a.get('href'), ''))
       zhihu_detail(new.a.text, new.a.get('href'))
     del zhihu_url
     del html
@@ -93,13 +94,18 @@ def zhihu_detail(title, url):
     html = get(zhihu_detail_url)
     if not html:
       return
-    zhihu_detail_soup = BeautifulSoup(html)
+    zhihu_detail_soup = BeautifulSoup(html, "lxml")
     filter_zhihu_detail = zhihu_detail_soup.find_all("div",attrs={"class":"RichContent RichContent--unescapable"})
+    for tag in filter_zhihu_detail:
+      for x in tag.find_all("div", attrs={"class":"ContentItem-actions RichContent-actions"}):
+        x.clear()
     try:
         ids = zhihu_db.get_id(title)
+        zhihu_db.update(ids[0].get('id'), "复制下面链接，打开浏览器打开可直接前往!")
         zhihu_db.update(ids[0].get('id'), filter_zhihu_detail[0].text)
+        zhihu_db.update(ids[0].get('id'), str(filter_zhihu_detail[0]))
     except:
-      pass
+        pass
 
 # https://tophub.today/n/WnBe01o371
 
@@ -108,11 +114,10 @@ def weixin():
     html = get(weixin_url)
     if not html:
       return
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html, "lxml")
     fliter_weixin = soup.find_all('td', attrs={"class":"al"})
     for new in fliter_weixin[:10]:
-      weixin_db.insert((new.a.text, '', new.a.get('href')))
-      #weixin_detail(new.a.text, new.a.get('href'))
+      weixin_db.insert((new.a.text, '', new.a.get('href'), ''))
     del weixin_url
     del html
     del soup
@@ -120,9 +125,9 @@ def weixin():
 
 def main():
     weibo()
-    baidu()
-    zhihu()
-    weixin()
+    # baidu()
+    # zhihu()
+    # weixin()
 
 if __name__ == '__main__':
     main()

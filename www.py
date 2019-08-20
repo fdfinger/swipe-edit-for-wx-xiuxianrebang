@@ -11,7 +11,12 @@ CORS(app)
 
 @app.route('/')
 def index():
-    return render_template('template.html', data=BaseModel().select()[:10])
+    return render_template('template.html',
+        weibo_data=BaseModel().select()[:10],
+        baidu_data=BaiduModal().select()[:10],
+        zhihu_data=ZhihuModal().select()[:10],
+        weixin_data=WeixinModal().select()[:10]
+    )
 
 @app.route('/update')
 def update():
