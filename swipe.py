@@ -24,7 +24,6 @@ def weibo():
     soup = BeautifulSoup(html, "lxml")
     new_list = [x for x in soup.find_all('a') if '/weibo?q=' in x.get('href')]
     for new in new_list[:10]:
-      #newdata = "{0},{1},{2}".format()
       db.insert((new.text, '', new.get('href'), ''))
       weibo_detail(new.text, new.get('href'))
 
@@ -130,4 +129,4 @@ def main():
     weixin()
 
 if __name__ == '__main__':
-    baidu()
+    main()

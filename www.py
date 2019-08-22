@@ -5,6 +5,7 @@ import json
 from swipe import main
 
 from model import BaseModel, BaiduModal, ZhihuModal, WeixinModal
+from fenci import fenci
 
 app = Flask(__name__)
 CORS(app)
@@ -15,7 +16,8 @@ def index():
         weibo_data=BaseModel().select()[:10],
         baidu_data=BaiduModal().select()[:10],
         zhihu_data=ZhihuModal().select()[:10],
-        weixin_data=WeixinModal().select()[:10]
+        weixin_data=WeixinModal().select()[:10],
+        hotword = fenci()
     )
 
 @app.route('/update')
