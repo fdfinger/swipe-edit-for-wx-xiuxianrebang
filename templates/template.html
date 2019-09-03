@@ -36,8 +36,38 @@
   <div id="header">
     <p>今日关键词 <span style="color: #FF4C41;">{{hotword}}</span></p>
     <p>
-      <span style="font-size: 14px; color: #AC39FF;">字数 8231 预计阅读50分钟，建议直接看标题，挑感兴趣的阅读</span>
+      <span style="font-size: 14px; color: #AC39FF;">建议直接看标题，挑感兴趣的阅读</span>
     </p>
+    <section>
+        <section style="margin: 8px 0% 0px; position: static;">
+            <section style="height: 2px; background-color: #2d2c2f;"></section>
+        </section>
+        <section style="margin-right: 0%; margin-left: 0%; font-size: 17.6px; position: static;transform: translate3d(5px, 0px, 0px);-webkit-transform: translate3d(5px, 0px, 0px);-moz-transform: translate3d(5px, 0px, 0px);-o-transform: translate3d(5px, 0px, 0px);">
+            <section style="font-size: 19.8px;">
+                <strong>摘要</strong>
+            </section>
+        </section>
+        <section style="margin-top: -5px; margin-right: 0%; margin-left: 0%; line-height: 1; position: static;transform: translate3d(0px, 0px, 0px);-webkit-transform: translate3d(0px, 0px, 0px);-moz-transform: translate3d(0px, 0px, 0px);-o-transform: translate3d(0px, 0px, 0px);">
+            <section style="width: 0px; display: inline-block; vertical-align: bottom; border-bottom-width: 0.7em; border-bottom-style: solid; border-bottom-color: #f3d4b9; border-left-width: 0.45em !important; border-left-style: solid !important; border-left-color: transparent !important; border-right-width: 0.45em !important; border-right-style: solid !important; border-right-color: transparent !important;"></section>
+            <section style="width: 0px; display: inline-block; vertical-align: bottom; border-bottom-width: 0.7em; border-bottom-style: solid; border-bottom-color: #f3d4b9; border-left-width: 0.45em !important; border-left-style: solid !important; border-left-color: transparent !important; border-right-width: 0.45em !important; border-right-style: solid !important; border-right-color: transparent !important;"></section>
+            <section style="width: 0px; display: inline-block; vertical-align: bottom; border-bottom-width: 0.7em; border-bottom-style: solid; border-bottom-color: #f3d4b9; border-left-width: 0.45em !important; border-left-style: solid !important; border-left-color: transparent !important; border-right-width: 0.45em !important; border-right-style: solid !important; border-right-color: transparent !important;"></section>
+            <section style="width: 0px; display: inline-block; vertical-align: bottom; border-bottom-width: 0.7em; border-bottom-style: solid; border-bottom-color: #f3d4b9; border-left-width: 0.45em !important; border-left-style: solid !important; border-left-color: transparent !important; border-right-width: 0.45em !important; border-right-style: solid !important; border-right-color: transparent !important;"></section>
+            <section style="width: 0px; display: inline-block; vertical-align: bottom; border-bottom-width: 0.7em; border-bottom-style: solid; border-bottom-color: #f3d4b9; border-left-width: 0.45em !important; border-left-style: solid !important; border-left-color: transparent !important; border-right-width: 0.45em !important; border-right-style: solid !important; border-right-color: transparent !important;"></section>
+        </section>
+        <section style="display: inline-block;width: 100%;vertical-align: top;padding: 15px;box-sizing:border-box;background-color: #f3d4b9;" data-width="100%">
+            <section class="135brush" style="text-align: justify; font-size: 15px; color: #666666;">
+                {% for weibo in weibo_data %}
+                  {{weibo.get('title')}} 
+                {% endfor %}
+                {% for baidu in baidu_data %}
+                  {{baidu.get('title')}} 
+                {% endfor %}
+            </section>
+        </section>
+        <section style="margin: 8px 0% 30px; position: static;">
+            <section style="height: 2px; background-color: #2d2c2f;"></section>
+        </section>
+    </section>
   </div>
   <div id="weibo">
     <section>
