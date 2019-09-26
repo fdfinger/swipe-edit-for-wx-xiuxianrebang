@@ -124,7 +124,10 @@ def weixin():
 
 def main():
     weibo()
-    baidu()
+    try:
+      baidu()
+    except:
+      pass
     zhihu()
     weixin()
 
